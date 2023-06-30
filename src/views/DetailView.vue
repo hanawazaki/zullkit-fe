@@ -1,5 +1,10 @@
 <script setup>
+import { onMounted } from "vue";
 import Gallery from "../components/detail/Gallery.vue";
+
+onMounted(() => {
+  window.scrollTo(0, 0);
+});
 </script>
 
 <template>
