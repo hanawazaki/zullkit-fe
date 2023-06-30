@@ -1,7 +1,7 @@
 <template>
   <div class="w-full px-1 my-1 md:w-1/2 lg:my-4 lg:px-4 lg:w-1/4">
     <div class="overflow-hidden border border-gray-200 rounded-xl">
-      <RouterLink to="#">
+      <RouterLink :to="`/details/${id}`">
         <div class="m-4 overflow-hidden rounded-xl">
           <img
             :alt="props / title"
@@ -15,7 +15,7 @@
         <h1 class="text-lg">
           <RouterLink
             class="font-semibold text-black no-underline hover:underline"
-            to="#"
+            :to="`/details/${props.id}`"
           >
             {{ props.title }}
           </RouterLink>
@@ -32,6 +32,10 @@
 import { RouterLink } from "vue-router";
 
 const props = defineProps({
+  id: {
+    type: Number,
+    required: true,
+  },
   title: {
     type: String,
     required: true,

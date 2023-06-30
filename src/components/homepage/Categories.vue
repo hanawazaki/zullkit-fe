@@ -8,6 +8,7 @@
         :image="item.image"
         v-for="item in categories"
         :key="item.id"
+        :id="item.id"
       />
     </div>
   </div>
