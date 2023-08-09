@@ -3,9 +3,9 @@
     <h2 class="mb-4 text-xl font-medium md:mb-0 md:text-lg">New Items</h2>
     <div class="flex flex-wrap -mx-1 lg:-mx-4">
       <NewItemCard
-        :title="item.title"
-        :description="item.description"
-        :image="item.image"
+        :title="item.name"
+        :description="item.subtitle"
+        :image="item.thumbnails"
         v-for="item in newItems"
         :key="item.id"
         :id="item.id"
@@ -15,29 +15,27 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import NewItemCard from "../NewItemCard.vue";
+import axios from "axios";
 
-const newItems = ref([
-  {
-    id: 1,
-    title: "Mobile UI Kit",
-    description: "Mobile UI Kit",
-    image: "src/assets/img/items-1.jpg",
-  },
-  {
-    id: 2,
-    title: "Online Doctor Consultation",
-    description: "Website UI Kit",
-    image: "src/assets/img/items-2.jpg",
-  },
-  {
-    id: 3,
-    title: "Banking Crypto",
-    description: " Mobile UI Kit",
-    image: "src/assets/img/items-3.jpg",
-  },
-]);
+const newItems = ref([]);
+
+const getItems = async () => {
+  try {
+    const response = await axios.get(
+      "http://zullkit-backend-main.test/api/products?limit=3"
+    );
+    newItems.value = response.data.data.data;
+    console.log(response.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+onMounted(() => {
+  getItems();
+});
 </script>
 
 <style lang="scss" scoped></style>

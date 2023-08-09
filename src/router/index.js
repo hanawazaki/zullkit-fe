@@ -6,6 +6,7 @@ import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import DetailView from '../views/DetailView.vue'
 import SuccessView from '../views/SuccessView.vue'
+import CategoryItems from '../views/CategoryItems.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -24,6 +25,11 @@ const router = createRouter({
       path: '/categories',
       name: 'categories',
       component: CategoriesView
+    },
+    {
+      path: '/categories/:id',
+      name: 'category-items',
+      component: CategoryItems
     },
     {
       path: '/login',

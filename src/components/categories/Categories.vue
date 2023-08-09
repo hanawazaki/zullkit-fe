@@ -1,6 +1,6 @@
 <template>
   <div class="container px-4 mx-auto my-16 md:px-12" id="categories">
-    <h2 class="mb-4 text-xl font-medium md:mb-0 md:text-lg">Top Categories</h2>
+    <h2 class="mb-4 text-xl font-medium md:mb-0 md:text-lg">All Categories</h2>
     <div class="flex flex-wrap -mx-1 lg:-mx-4">
       <CategoriesCard
         v-for="item in categories"
@@ -24,7 +24,7 @@ const categories = ref([]);
 const getCategories = async () => {
   try {
     const response = await axios.get(
-      "http://zullkit-backend-main.test/api/categories?show_product=1&limit=4"
+      "http://zullkit-backend-main.test/api/categories"
     );
     categories.value = response.data.data.data;
   } catch (error) {
