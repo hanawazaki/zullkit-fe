@@ -27,7 +27,7 @@ const getItems = async () => {
       "http://zullkit-backend-main.test/api/products?limit=3"
     );
     newItems.value = response.data.data.data;
-    console.log(response.data);
+    // console.log(response.data);
   } catch (error) {
     console.log(error);
   }
