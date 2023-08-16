@@ -24,7 +24,7 @@ import { ref, computed, onMounted } from "vue";
 
 const userStore = useUserStore();
 onMounted(() => {
-  userStore.fetchUser();
+  // userStore.fetchUser();
 });
 
 const isLoggedIn = computed(() => userStore.isLoggedIn);

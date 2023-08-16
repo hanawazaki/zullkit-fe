@@ -30,7 +30,6 @@ const route = useRoute();
 
 const categoryName = ref("");
 
-console.log(route.params.id);
 const getItems = async () => {
   try {
     const response = await axios.get(
@@ -38,7 +37,6 @@ const getItems = async () => {
     );
     newItems.value = response.data.data.products;
     categoryName.value = response.data.data;
-    console.log(response.data.data.products);
   } catch (error) {
     console.log(error);
   }

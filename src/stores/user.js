@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import axios from 'axios'
+import { useRoute, useRouter } from 'vue-router'
 
 export const useUserStore = defineStore({
   id: "user",
@@ -14,7 +15,9 @@ export const useUserStore = defineStore({
     getUser: (state) => state.user
   },
   actions: {
+
     async fetchUser() {
+      const router = useRouter()
       try {
         // this.loading = true
         const { data } = await axios.get("http://zullkit-backend-main.test/api/user", {
@@ -22,29 +25,19 @@ export const useUserStore = defineStore({
             Authorization: localStorage.getItem('token_type') + ' ' + localStorage.getItem('access_token')
           }
         })
-        console.log('data from fetchuser', data)
+        // console.log('data from fetchuser', data)
         this.user = data
         // this.loading = false
-        console.log("isLoading", this.loading);
+        // console.log("isLoading", this.loading);
       } catch (error) {
-        console.log(error)
+        // console.log(error)
         this.user = false
+
+        router.push("/login")
+
+
         // this.loading = false
       }
     },
-    async getABC() {
-      try {
-        const { data } = await axios.get("http://zullkit-backend-main.test/api/user", {
-          headers: {
-            Authorization: localStorage.getItem('token_type') + ' ' + localStorage.getItem('access_token')
-          }
-        })
-        console.log('data from getABC', data)
-        this.user = data
-      } catch (error) {
-        console.log(error)
-        this.user = false
-      }
-    }
   }
 })
